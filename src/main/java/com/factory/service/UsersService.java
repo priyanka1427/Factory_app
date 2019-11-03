@@ -4,12 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.factory.dao.UsersDao;
 import com.factory.dto.UsersDTO;
 import com.factory.model.Users;
-import com.factory.repository.UsersRepository;
 
 @Service(value = "userService")
 public class UsersService {
@@ -18,14 +17,13 @@ public class UsersService {
 	private String entityName = "Users";
 	
 	@Autowired
-	private UsersRepository usersRepository;
-	
+	private UsersDao usersDao;
 	/*@Autowired
 	private BCryptPasswordEncoder encoder;*/
 	
 	public UsersDTO findbyUserName(String username) {
 		LOGGER.info("Invoked method: {} : findbyUserName with username : {}  ", entityName, username);
-		Users entity = usersRepository.findByUserName(username);
+		Users entity = usersDao.findByUserName(username);
 		if (entity != null) {
 			LOGGER.info("{} fetched successfully with  code : {}  ", entityName, username);
 			return convertToDto(entity);

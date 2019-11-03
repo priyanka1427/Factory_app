@@ -18,9 +18,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
-@NamedQueries({
-		@NamedQuery(name = "Users.findByUserName", query = "SELECT usr FROM Users as usr WHERE usr.userName = :userName"),
-		})
 public class Users {
 	@Id
 	private Long id;
