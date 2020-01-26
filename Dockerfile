@@ -1,9 +1,8 @@
 
 FROM openjdk:8-jdk-alpine
 
-COPY ./target/boot-gradle-0.0.1-SNAPSHOT.jar /usr/app/
-WORKDIR /usr/app
+COPY /build/libs/*.jar app.jar
 
-RUN sh -c 'touch boot-gradle-0.0.1-SNAPSHOT.jar'
+RUN sh -c 'touch app.jar'
 
-ENTRYPOINT ["java","-jar","boot-gradle-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
